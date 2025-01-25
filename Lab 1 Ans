@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Story Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Random Story Generator</h1>
+        <label for="custom-name">Enter custom name (optional):</label>
+        <input type="text" id="custom-name" placeholder="Enter name">
+        <button id="generate-btn">Generate Story</button>
+        <p id="story"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input {
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 80%;
+}
+
+p {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+// Array of random silly stories about a tree and monkey
+const stories = [
+    "One day, Bob climbed a giant tree and found a monkey wearing sunglasses. The monkey invited him to a disco party in the treetop!",
+    "Bob was walking through the forest when he saw a monkey swinging from tree to tree, offering him bananas to join its jungle band.",
+    "While sitting under a tree, Bob heard a loud noise. It was a monkey who had built a treehouse just for him! Bob spent the day learning how to swing from vines.",
+    "Bob tried to pick some fruit from a tree, but a mischievous monkey threw coconuts at him from above, making Bob laugh all day long.",
+    "Bob once planted a tree in his backyard. The next day, a monkey showed up, wearing a tiny suit, and said, 'Thanks for the new home!'"
+];
+
+// Function to generate a random story
+function generateStory() {
+    // Get the custom name input value
+    const customName = document.getElementById("custom-name").value.trim();
+
+    // Pick a random story from the array
+    const randomStory = stories[Math.floor(Math.random() * stories.length)];
+
+    // Replace "Bob" with the custom name if provided
+    const finalStory = customName ? randomStory.replace("Bob", customName) : randomStory;
+
+    // Display the story on the page
+    document.getElementById("story").textContent = finalStory;
+}
+
+// Add event listener to the button
+document.getElementById("generate-btn").addEventListener("click", generateStory);
